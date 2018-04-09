@@ -1,0 +1,23 @@
+.content-wrap {
+  flex: 1;
+  -webkit-flex: 1;
+}
+
+.content {
+  border-radius: 4px;
+  margin: 48px;
+  margin-top: 24px;
+  padding: 48px;
+  /* max-width: 1440px; */
+  background: #fff;
+  color: #262626;
+
+  display: flex;
+  display: -webkit-flex;
+  flex-flow: row wrap;
+  -webkit-flex-flow: row wrap;
+  justify-content: space-evenly;
+  -webkit-justify-content: space-evenly;
+  align-items: center;
+  -webkit-align-items: center;
+}

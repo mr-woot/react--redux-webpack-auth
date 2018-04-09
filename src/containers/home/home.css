@@ -1,0 +1,21 @@
+.home {
+  height: 100%;
+  /* flex */
+  display: flex;
+  display: -webkit-flex;
+
+  /* flex-column */
+  flex-direction: column;
+  -webkit-flex-direction: column;
+
+  background: #005c97;
+  background: -webkit-linear-gradient(to right, #363795, #005c97);
+  background: linear-gradient(to right, #363795, #005c97);
+  color: #fff;
+}
+
+.home-wrap {
+  max-width: 1440px;
+  width: 100%;
+  margin: 1rem auto;
+}

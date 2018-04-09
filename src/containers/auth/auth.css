@@ -1,0 +1,23 @@
+.auth {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background: #005c97;
+  background: -webkit-linear-gradient(to right, #363795, #005c97);
+  background: linear-gradient(to right, #363795, #005c97);
+}
+.login-form {
+  padding: 20px 20px 60px;
+  width: 400px;
+}
+.login-form-button {
+  width: 100%;
+}
+
+@media (max-width: 425px) {
+  .login-form {
+    width: 300px;
+  }
+}

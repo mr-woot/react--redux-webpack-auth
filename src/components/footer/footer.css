@@ -1,0 +1,11 @@
+.arxiv-footer {
+  background: #1c1c38;
+  color: #fff;
+}
+
+.footer-row {
+  display: flex;
+  display: -webkit-flex;
+  flex-flow: row nowrap;
+  -webkit-flex-flow: row nowrap;
+}
