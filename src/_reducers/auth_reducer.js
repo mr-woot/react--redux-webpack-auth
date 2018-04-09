@@ -2,15 +2,24 @@ import { notify } from "./../_helpers/notify";
 
 export function user(
   state = {
-    userType: "UNAUTH_USER"
+    userType: "UNAUTH_USER",
+    isAuthenticated: false
   },
   action
 ) {
   switch (action.type) {
-    case "SET_USER": {
+    case "AUTH_USER": {
       return {
         ...state,
-        userType: action.payload
+        userType: action.type,
+        isAuthenticated: true
+      };
+    }
+    case "UNAUTH_USER": {
+      return {
+        ...state,
+        userType: action.type,
+        isAuthenticated: false
       };
     }
   }

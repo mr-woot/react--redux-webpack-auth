@@ -10,7 +10,7 @@ import "./header.css";
 })
 class Header extends React.Component {
   handleLogout = () => {
-    this.props.dispatch(logout());
+    this.props.dispatch(logout(this.props.history));
   };
   render() {
     return (

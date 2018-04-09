@@ -1,10 +1,9 @@
 import { combineReducers } from "redux";
-import { login, user, getToken } from "./auth_reducer";
+import { login, user } from "./auth_reducer";
 
 const appReducer = combineReducers({
   login,
-  user,
-  getToken
+  user
 });
 
 const initialState = appReducer({}, {});

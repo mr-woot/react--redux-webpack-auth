@@ -5,6 +5,9 @@ import { connect } from "react-redux";
 import NotFoundPage from "./containers/pages/not_found";
 import Home from "./containers/home/home";
 import Login from "./containers/auth/login";
+import { setUser } from "./_actions/auth_actions";
+import publicRoute from "./components/hoc/require_no_auth";
+import privateRoute from "./components/hoc/require_auth";
 
 @withRouter
 @connect(store => {
@@ -20,41 +23,17 @@ export default class App extends React.Component {
   componentDidMount() {
     const token = localStorage.getItem("token");
     if (!token) {
-      this.setState({
-        isLoggedIn: false
-      });
+      this.props.dispatch(setUser("UNAUTH"));
     } else {
-      this.setState({
-        isLoggedIn: true
-      });
+      this.props.dispatch(setUser("AUTH"));
     }
   }
 
   render() {
     return (
       <Switch>
-        <Route
-          exact
-          path="/"
-          render={routeProps => {
-            return this.state.isLoggedIn ? (
-              <Home {...routeProps} />
-            ) : (
-              <Redirect to="/login" />
-            );
-          }}
-        />
-        <Route
-          exact
-          path="/login"
-          render={routeProps => {
-            return this.state.isLoggedIn ? (
-              <Redirect to="/" />
-            ) : (
-              <Login {...routeProps} />
-            );
-          }}
-        />
+        <Route exact path="/" component={privateRoute(Home)} />
+        <Route exact path="/login" component={publicRoute(Login)} />
         <Route path="*" component={NotFoundPage} />
       </Switch>
     );

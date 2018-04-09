@@ -5,8 +5,7 @@ import * as config from "./../constants/config";
 
 export function setUser(userType) {
   return {
-    type: "SET_USER",
-    payload: userType
+    type: `${userType}_USER`
   };
 }
 
@@ -19,10 +18,9 @@ export function login(payload, history) {
     })
       .then(response => {
         const { token } = response.value.data.result.body.result;
-        debugger;
         localStorage.setItem("token", token);
-        window.location.href = "/";
-        // history.push("/");
+        dispatch(setUser("AUTH"));
+        history.push("/");
       })
       .catch(err => {
         errorHandler(dispatch, err.response.data.error.message, "LOGIN");
@@ -30,11 +28,11 @@ export function login(payload, history) {
   };
 }
 
-export function logout() {
+export function logout(history) {
   return dispatch => {
     localStorage.removeItem("token");
-    dispatch(setUser("UNAUTH_USER"));
-    window.location.href = "/login";
+    dispatch(setUser("UNAUTH"));
+    history.push("login");
   };
 }
 
