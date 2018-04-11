@@ -10,26 +10,26 @@ export function setUser(userType) {
 }
 
 export function login(payload, history) {
-  console.log(apiEndpoints.login);
   return dispatch => {
     return dispatch({
       type: "LOGIN",
       payload: axios.post(apiEndpoints.login, payload)
     })
       .then(response => {
-        const { token } = response.value.data.result.body.result;
+        const { token } = response.value.data.result;
         localStorage.setItem("token", token);
         dispatch(setUser("AUTH"));
         history.push("/");
       })
       .catch(err => {
-        errorHandler(dispatch, err.response.data.error.message, "LOGIN");
+        errorHandler(dispatch, err.message, "LOGIN");
       });
   };
 }
 
 export function logout(history) {
-  return dispatch => {
+  return (dispatch, store) => {
+    // let state = store.getState();
     localStorage.removeItem("token");
     dispatch(setUser("UNAUTH"));
     history.push("login");
