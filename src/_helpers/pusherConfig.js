@@ -3,14 +3,14 @@ import Pusher from "pusher-js";
 import { PUSHER_API_KEY, PUSHER_APP_CLUSTER } from "./../constants/config";
 
 // Required to make cross-origin requests
-Pusher.Runtime.createXHR = function() {
+Pusher.Runtime.createXHR = function () {
   var xhr = new XMLHttpRequest();
   xhr.withCredentials = true;
   return xhr;
 };
 
 export const channels = {
-  channel_naem: () => "channel_name"
+  channel_name: () => "channel_name"
 };
 export const events = {
   event_name: () => "event_name"

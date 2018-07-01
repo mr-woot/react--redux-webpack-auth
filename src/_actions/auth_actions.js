@@ -2,10 +2,22 @@ import axios from "axios";
 import * as apiEndpoints from "../constants/apiEndpoints";
 import { errorHandler } from "../_helpers/errorHandler";
 import * as config from "./../constants/config";
+import { latestPrice } from "./trade_actions";
 
 export function setUser(userType) {
   return {
     type: `${userType}_USER`
+  };
+}
+
+export function signup(payload, history) {
+  return dispatch => {
+    return dispatch({
+      type: "SIGNUP",
+      payload: axios.post(apiEndpoints.signup, payload)
+    }).then(response => {
+      history.push("/login");
+    });
   };
 }
 
@@ -17,18 +29,77 @@ export function login(payload, history) {
     })
       .then(response => {
         const { token } = response.value.data.result;
+        const {
+          id,
+          username,
+          email,
+          fullName,
+          phoneNumber,
+          country,
+          address,
+          apiKey,
+          secretKey
+        } = response.value.data.result;
         localStorage.setItem("token", token);
         dispatch(setUser("AUTH"));
+        dispatch(latestPrice(false));
         history.push("/");
       })
       .catch(err => {
-        errorHandler(dispatch, err.message, "LOGIN");
+        const { message } = err.response.data.error;
+        errorHandler(dispatch, message, "LOGIN");
+      });
+  };
+}
+
+export function setUserData(payload) {
+  return {
+    type: "SET_USER_DATA",
+    payload
+  };
+}
+
+export function user(history) {
+  return dispatch => {
+    return dispatch({
+      type: "SET_USER_DATA",
+      payload: axios.get(apiEndpoints.user, {
+        headers: {
+          Authorization: localStorage.getItem("token") || null
+        }
+      })
+    })
+      .then(response => {})
+      .catch(err => {
+        // errorHandler(dispatch, err.message, "LOGIN");
+        localStorage.removeItem("token");
+        dispatch(setUser("UNAUTH"));
+        history.push("login");
+      });
+  };
+}
+
+export function updateSettings(history, payload) {
+  return dispatch => {
+    return dispatch({
+      type: "UPDATE_SETTINGS",
+      payload: axios.post(apiEndpoints.settings, payload, {
+        headers: {
+          Authorization: localStorage.getItem("token") || null
+        }
+      })
+    })
+      .then(response => {
+        return dispatch(user(history));
+      })
+      .catch(err => {
+        // errorHandler(dispatch, err.message, "LOGIN");
       });
   };
 }
 
 export function logout(history) {
-  return (dispatch, store) => {
+  return dispatch => {
     // let state = store.getState();
     localStorage.removeItem("token");
     dispatch(setUser("UNAUTH"));

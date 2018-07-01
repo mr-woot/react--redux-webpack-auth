@@ -15,7 +15,7 @@ class Header extends React.Component {
   render() {
     return (
       <header className="header">
-        <div className="navbar-item logo">React Starter</div>
+        <div className="navbar-item logo">ZingniZ</div>
         <nav>
           <div class="nav-links animated fadeIn">
             <a class="nav-btn" href="#" onClick={this.handleLogout}>

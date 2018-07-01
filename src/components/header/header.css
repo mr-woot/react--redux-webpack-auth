@@ -1,7 +1,7 @@
-header {
+.home-wrap header {
   height: 64px;
-  display: flex;
-  display: -webkit-flex;
+  display: flex !important;
+  display: -webkit-flex !important;
   flex-flow: row nowrap;
   -webkit-flex-flow: row nowrap;
   justify-content: space-between;
@@ -31,8 +31,8 @@ header {
 }
 
 nav {
-  display: flex;
-  display: -webkit-flex;
+  display: flex !important;
+  display: -webkit-flex !important;
   flex-flow: row nowrap;
   -webkit-flex-flow: row nowrap;
   justify-content: flex-end;

@@ -9,7 +9,7 @@ export default function(ComposedComponent) {
     };
   })
   class PublicRoute extends Component {
-    componentWillMount() {
+    componentDidMount() {
       if (this.props.isAuthenticated) {
         this.props.history.push("/");
       }

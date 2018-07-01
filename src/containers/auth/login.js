@@ -19,7 +19,6 @@ class Login extends React.Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log("Received values of form: ", values);
         this.props
           .dispatch(
             login(
@@ -69,7 +68,14 @@ class Login extends React.Component {
     };
     return (
       <div className="auth">
-        <Form onSubmit={this.handleSubmit} className="login-form card card-1">
+        <Form
+          onSubmit={this.handleSubmit}
+          className="login-form card card-1"
+          style={{
+            padding: "1rem 2rem",
+            paddingBottom: "2rem"
+          }}
+        >
           <FormItem {...formItemLayout}>
             <h2 className="text-center">Login</h2>
           </FormItem>
@@ -109,6 +115,14 @@ class Login extends React.Component {
             loading={login.processing}
           >
             Log in
+          </Button>
+          <Button
+            type="default"
+            className="login-form-button"
+            style={{ marginTop: 10 }}
+            onClick={() => this.props.history.push("/signup")}
+          >
+            Signup
           </Button>
         </Form>
       </div>

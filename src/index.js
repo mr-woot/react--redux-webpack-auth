@@ -11,6 +11,7 @@ import store from "./_helpers/store";
 import registerServiceWorker from "./registerServiceWorker";
 import App from "./App";
 import "./index.css";
+import "./themes/ant-overrides.css";
 
 import axios from "axios";
 axios.withCredentials = true;

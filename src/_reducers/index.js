@@ -1,9 +1,26 @@
 import { combineReducers } from "redux";
-import { login, user } from "./auth_reducer";
+import { login, signup, user, updateSettings } from "./auth_reducer";
+import {
+  priceTrade,
+  percentageTrade,
+  conditionalTrade,
+  latestPrice
+} from "./trade_reducer";
+import { getOrders, getBinanceOrders, cancelBinanceOrderById, getCurrentBalances } from "./orders_reducer";
 
 const appReducer = combineReducers({
   login,
-  user
+  signup,
+  user,
+  priceTrade,
+  percentageTrade,
+  conditionalTrade,
+  latestPrice,
+  updateSettings,
+  getOrders,
+  getBinanceOrders,
+  cancelBinanceOrderById,
+  getCurrentBalances
 });
 
 const initialState = appReducer({}, {});

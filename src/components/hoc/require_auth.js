@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { setUser } from "../../_actions/auth_actions";
 
 export default function(ComposedComponent) {
   @connect(store => {
@@ -9,9 +10,10 @@ export default function(ComposedComponent) {
     };
   })
   class PrivateRoute extends Component {
-    componentWillMount() {
+    componentDidMount() {
       if (!this.props.isAuthenticated) {
         this.props.history.push("/login");
+      } else {
       }
     }
 

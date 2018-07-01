@@ -3,7 +3,8 @@ import { notify } from "./../_helpers/notify";
 export function user(
   state = {
     userType: "UNAUTH_USER",
-    isAuthenticated: false
+    isAuthenticated: false,
+    userData: null
   },
   action
 ) {
@@ -19,7 +20,22 @@ export function user(
       return {
         ...state,
         userType: action.type,
-        isAuthenticated: false
+        isAuthenticated: false,
+        userData: null
+      };
+    }
+    case "SET_USER_DATA_FULFILLED": {
+      return {
+        ...state,
+        isAuthenticated: true,
+        userData: action.payload.data.result
+      };
+    }
+    case "LOGIN_FULFILLED": {
+      return {
+        ...state,
+        isAuthenticated: true,
+        userData: action.payload.data.result
       };
     }
   }
@@ -29,7 +45,6 @@ export function user(
 export function login(
   state = {
     processing: false,
-    data: null,
     error: null
   },
   action
@@ -47,11 +62,44 @@ export function login(
       return {
         ...state,
         processing: false,
-        data: action.payload.data.result,
         error: null
       };
     }
     case "LOGIN_REJECTED": {
+      return {
+        ...state,
+        processing: false,
+        error: action.payload
+      };
+    }
+  }
+  return state;
+}
+
+export function signup(
+  state = {
+    processing: false,
+    error: null
+  },
+  action
+) {
+  switch (action.type) {
+    case "SIGNUP_PENDING": {
+      return {
+        ...state,
+        processing: true,
+        error: null
+      };
+    }
+    case "SIGNUP_FULFILLED": {
+      notify("Registered successfully", "success");
+      return {
+        ...state,
+        processing: false,
+        error: null
+      };
+    }
+    case "SIGNUP_REJECTED": {
       return {
         ...state,
         processing: false,
@@ -87,6 +135,39 @@ export function getToken(
       };
     }
     case "GET_TOKEN_REJECTED": {
+      return {
+        ...state,
+        processing: false,
+        error: action.payload
+      };
+    }
+  }
+  return state;
+}
+
+export function updateSettings(
+  state = {
+    processing: false,
+    error: null
+  },
+  action
+) {
+  switch (action.type) {
+    case "UPDATE_SETTINGS_PENDING": {
+      return {
+        ...state,
+        processing: true,
+        error: null
+      };
+    }
+    case "UPDATE_SETTINGS_FULFILLED": {
+      return {
+        ...state,
+        processing: false,
+        error: null
+      };
+    }
+    case "UPDATE_SETTINGS_REJECTED": {
       return {
         ...state,
         processing: false,

@@ -1,3 +1,5 @@
+@import "~antd/dist/antd.css";
+
 html,
 body {
   background: #fff;
@@ -10,6 +12,10 @@ body {
   background: -webkit-linear-gradient(to right, #363795, #005c97);
   background: linear-gradient(to right, #363795, #005c97);
   color: #fff;
+}
+
+#root {
+  height: 100%;
 }
 
 .text-center {
@@ -28,10 +34,6 @@ body {
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-/* .card-1:hover {
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-} */
-
 .card-2 {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
@@ -46,4 +48,19 @@ body {
 
 .card-5 {
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+
+.f-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.fa {
+  min-width: 18px;
+  margin-right: 10px;
+  -webkit-transition: font-size 0.15s cubic-bezier(0.215, 0.61, 0.355, 1),
+    margin 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: font-size 0.15s cubic-bezier(0.215, 0.61, 0.355, 1),
+    margin 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
