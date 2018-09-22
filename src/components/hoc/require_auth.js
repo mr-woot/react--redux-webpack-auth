@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { setUser } from "../../_actions/auth_actions";
 
-export default function(ComposedComponent) {
+export default function (ComposedComponent) {
   @connect(store => {
     return {
       isAuthenticated: store.user.isAuthenticated

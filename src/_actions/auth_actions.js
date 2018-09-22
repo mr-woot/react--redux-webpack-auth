@@ -69,7 +69,7 @@ export function user(history) {
         }
       })
     })
-      .then(response => {})
+      .then(response => { })
       .catch(err => {
         // errorHandler(dispatch, err.message, "LOGIN");
         localStorage.removeItem("token");
